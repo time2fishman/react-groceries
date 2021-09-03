@@ -41,7 +41,7 @@ Unless otherwise stated, assignments are due by 10 am ET the next class day.
 {
    item: '',
    brand: '',
-   price: '',
+   price: 0,
    isPurchased: false
 }
 ```
@@ -53,7 +53,7 @@ const groceries = [
   {
     item: 'Flour',
     brand: 'Golden Start',
-    price: '12',
+    price: 12,
     quantity: '1lb',
     isPurchased: false
   },
@@ -61,9 +61,12 @@ const groceries = [
   // Make sure they have consistent properties
 ];
 ```
+1. Remember to use semantic elemenents like a `ul` and `li`.
+1. Create a function called `calculateTotal` that will add up the price of all your items and display it. 
 1. Conditionally render the grocery items based on whether or not they were purchased (ok to have hard coded values for isPurchased)
 1. Add some style to your app
 1. **Stretch Goal:** Add a button that says 'remove' and when clicked REMOVES the element from the array. Hint: You'll need to add the groceries list to `state` in order to achieve this! 
+
 
 
 ## Hungry for more

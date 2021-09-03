@@ -31,7 +31,7 @@ Unless otherwise stated, assignments are due by 10 am ET the next class day.
 
 ## Deliverables
 
-- A grocery app that allows users to make a grocery list. Remember to `git add` and `git commit` every time you get a part of the app working!
+- A grocery app that allows users to display a grocery list. Remember to `git add` and `git commit` every time you get a part of the app working!
 
 ## Requirements
 1. Read over these specs and draw a mockup of your app (don't worry about bonus features at this point)
@@ -63,14 +63,13 @@ const groceries = [
 ```
 1. Conditionally render the grocery items based on whether or not they were purchased (ok to have hard coded values for isPurchased)
 1. Add some style to your app
-1. **Stretch Goal:** Add a button that says 'remove' and when clicked the value of `isPurchased` is toggled
+1. **Stretch Goal:** Add a button that says 'remove' and when clicked REMOVES the element from the array. Hint: You'll need to add the groceries list to `state` in order to achieve this! 
 
 
 ## Hungry for more
 - Make multiple grocery lists (one for each family member) and have them update independently
 - sort your list alphabetically
 - create other ways to sort your data (ie by quantity)
-- change the 'remove' button's functionality to actually remove the item from the list
 - add a 'later' button that toggles the css (gray text, strikeout etc.) if the item should be purchased later
 - expand your app to allow for images (the images should be an http url ) and then render the image in your app - some images may take longer to load and not appear correctly, look into react life cycle events and/or lazy loading (if that is too much just keep trying images, some will work and save lifecycles/lazy loading for later)
 

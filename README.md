@@ -113,7 +113,7 @@ Next we will create a function called `calculateTotal` that will add up the pric
 ```jsx
 export default function ListTotal(props) {
 	return (
-		<p className='groceries__total grid--container--total'>Total: $1 billion</p>
+		<p className='groceries__total grid--container--total'><span>Total:</span> <span>$1 billion</span></p>
 	);
 }
 ```

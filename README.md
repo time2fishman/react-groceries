@@ -60,11 +60,11 @@ export default function ListItem(props) {
 }
 ```
 
-3. For right now, we're just going to render some hard-coded data and make sure that we connect the pieces properly. Going back to `App.js`, create a div with `className` of `groceries__content`. Within the div, create a ul with a `className` of `groceries__list`.
+3. For right now, we're just going to render some hard-coded data and make sure that we connect the pieces properly. Going back to `App.js`, create a `div` with `className` of `groceries__content`. Within the div, create a `ul` with a `className` of `groceries__list`.
 
 **❓ Why do we have to use `className` instead of `class` for attributes on JSX elements? 🤔**
 
-4. Import your `ListItem` component into App.js and render 3 of the `ListItem` components from inside the UL. You should see something that looks like this:
+4. Import your `ListItem` component into App.js and render 3 of the `ListItem` components from inside the `ul`. You should see something that looks like this:
 
 <img width="363" alt="Screen Shot 2022-02-17 at 8 52 38 PM" src="https://media.git.generalassemb.ly/user/21811/files/aeadcb80-9033-11ec-904e-8dbfc4f95a13">
 
@@ -108,8 +108,79 @@ Ah, that's better! You should see some dynamically rendered grocery items now. �
 
 Next we will create a function called `calculateTotal` that will add up the price of all your items and display it.
 
+1. Make a new file in your `src` directory called `ListTotal.js` with a component function of the same name. For right now, just return a `p` element with a `className` of `groceries__total` and some hard-coded text.
+
+```jsx
+export default function ListTotal(props) {
+	return (
+		<p className='groceries__total grid--container--total'>Total: $1 billion</p>
+	);
+}
+```
+
+2. Import that component into App.js and render it just before the closing `ul` tag. You should see something that looks like this:
+
+<img width="425" alt="Screen Shot 2022-02-17 at 9 23 24 PM" src="https://media.git.generalassemb.ly/user/21811/files/d99a1e80-9037-11ec-8319-0c14d4727270">
+
+3. Now let's pass the grocery data to the ListTotal component so that in the ListTotal component, we can write a function that can calculate the totals from the list.
+
+Pass the groceries data as a prop:
+
+```jsx
+<ListTotal groceries={groceries} />
+```
+
+Now inside ListTotal.js, let's write a function called `calculateTotal` whose job it is to return the sum of all the prices of our grocery items.
+
+```jsx
+export default function ListTotal(props) {
+	function calculateTotal(groceriesArray) {
+		// this function should return the sum of the prices
+	}
+
+	// save the return value of calculateTotal to a variable called total
+	const total = calculateTotal(props.groceries);
+
+	return (
+		<p className='groceries__total  grid--container--total'>
+			<span>Total: </span>
+			{/* Display the total price calculated */}
+			<span>${total}</span>
+		</p>
+	);
+}
+```
+
+Try to create the logic for the function on your own! A `for` or `while` loop would be a good approach. A possible solution is below, but only take a peek after trying it on your own.
+
+<details><summary>One possible solution</summary>
+
+```js
+function calculateTotal(groceriesArray) {
+	// one approach is to use a for loop
+	// initialize a sum to accumulate
+	let sum = 0;
+	// loop through the groceries array
+	for (let i = 0; i < groceriesArray.length; i++) {
+		// increment the sum with the price of each element
+		sum += groceriesArray[i].price;
+	}
+
+	// be sure to return the sum after it's been accumulated
+	return sum;
+}
+```
+
+</details>
+
+#### Once you get that working, you should see your total returned instead of $1 billion!
+
+<img width="434" alt="Screen Shot 2022-02-17 at 9 33 37 PM" src="https://media.git.generalassemb.ly/user/21811/files/4661e880-9039-11ec-8563-4771bd32a064">
+
+## Next Steps
+
 1. Conditionally render the grocery items based on whether or not they were purchased (ok to have hard coded values for isPurchased)
-1. Add some style to your app
+1. Add some more unique styles to your app
 1. **Stretch Goal:** Add a button that says 'remove' and when clicked REMOVES the element from the array. Hint: You'll need to add the groceries list to `state` in order to achieve this!
 
 ## Hungry for more

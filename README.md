@@ -179,11 +179,75 @@ function calculateTotal(groceriesArray) {
 
 <img width="434" alt="Screen Shot 2022-02-17 at 9 33 37 PM" src="https://media.git.generalassemb.ly/user/21811/files/4661e880-9039-11ec-8563-4771bd32a064">
 
-## Next Steps
+## Conditional Rendering
 
-1. Conditionally render the grocery items based on whether or not they were purchased (ok to have hard coded values for isPurchased)
-1. Add some more unique styles to your app
-1. **Stretch Goal:** Add a button that says 'remove' and when clicked REMOVES the element from the array. Hint: You'll need to add the groceries list to `state` in order to achieve this!
+Next we will conditionally render the grocery items based on whether or not they were purchased. We only want to show items on our list that have not been purchased, i.e., `isPurchased` should be false.
+
+Let's take a look at our code for rendering the `ListItem` elements one more time. Here is what we have so far in App.js:
+
+```jsx
+<ul className='groceries__list'>
+	{groceries.map((element, index) => {
+		return <ListItem groceryItem={element} key={index} />;
+	})}
+	<ListTotal groceries={groceries} />
+</ul>
+```
+
+All our grocery items are currently being rendered. The callback function for `.map` can actually have an `if/else` statement where we check to see if the element is not purchased and return the ListItem if so. If the item is purchased, we can just return null. Try adding that code on your own. If you get stuck for too long, check it out below.
+
+<details>
+<summary>Spoiler</summary>
+
+```jsx
+<ul className='groceries__list'>
+	{groceries.map((element, index) => {
+		if (element.isPurchased === false) {
+			return <ListItem groceryItem={element} key={index} />;
+		} else {
+			return null;
+		}
+	})}
+	<ListTotal groceries={groceries} />
+</ul>
+```
+
+</details>
+
+This isn't the most intuitive use of `.map`. There is another array iterator method we could pair here with `.map` to do this a bit more elegantly.
+
+<details>
+	<summary><strong>❓ Which JavaScript array iteration method lets us check array elements against a certain condition and only keep the ones that pass the test?</strong>
+</summary>
+
+[Array.prototype.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) allows us to iterate through an array and keep elements that pass a test condition.
+
+</details>
+
+Let's use that array iteration method and refactor our original code a bit. We'll be daisy-chaining array iterator methods, which you can totally do if the first method returns an array.
+
+```jsx
+<ul className='groceries__list'>
+	{groceries
+		.filter((element) => element.isPurchased === false)
+		.map((element, index) => {
+			return <ListItem groceryItem={element} key={index} />;
+		})}
+	<ListTotal groceries={groceries} />
+</ul>
+```
+
+Here is what our app looks like now:
+
+![React Groceries App](https://user-images.githubusercontent.com/53010153/171965744-ffa226cd-8bf5-469a-b09f-1da4d7e5ef12.png)
+
+Uh-oh, notice that the total is rendering all of our items. Even though butter is no longer being displayed, its cost is contributing to the overall total.
+
+### You Do: Update the code in ListTotal.js to check if the element is not yet purchased before adding it to the total.
+
+## Adding Groceries to State
+
+Now we will add a button that says 'remove' and when clicked REMOVES the element from the array. We'll need to add the groceries list to `state` in order to achieve this!
 
 ## Hungry for more
 

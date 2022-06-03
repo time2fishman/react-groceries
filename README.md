@@ -31,7 +31,7 @@ Make your Grocery List look like this:
 ## Requirements
 
 1. Read over these specs and think about how you might break the UI down into components.
-1. Styles are pre-defined for you in BEM syntax in App.css. Review these and get a sense for how the classes might be applied to different elements. CSS Grid is being used for some layouts, but don't worry too much about it just yet -- we'll learn it in this unit.
+1. Styles are pre-defined for you in [BEM syntax](http://getbem.com/naming/) in App.css. Review these and get a sense for how the classes might be applied to different elements. CSS Grid is being used for some layouts, but don't worry too much about it just yet -- we'll learn it later in this unit.
 1. Grocery item data is in this shape, with some hard-coded grocery data available for you in App.js. Feel free to add more items to the list.
 
 ```js
@@ -113,7 +113,9 @@ Next we will create a function called `calculateTotal` that will add up the pric
 ```jsx
 export default function ListTotal(props) {
 	return (
-		<p className='groceries__total grid--container--total'><span>Total:</span> <span>$1 billion</span></p>
+		<p className='groceries__total grid--container--total'>
+			<span>Total:</span> <span>$1 billion</span>
+		</p>
 	);
 }
 ```

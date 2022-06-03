@@ -245,9 +245,123 @@ Uh-oh, notice that the total is rendering all of our items. Even though butter i
 
 ### You Do: Update the code in ListTotal.js to check if the element is not yet purchased before adding it to the total.
 
+In order words, only un-purchased grocery items should be contributing to the displayed total.
+
 ## Adding Groceries to State
 
 Now we will add a button that says 'remove' and when clicked REMOVES the element from the array. We'll need to add the groceries list to `state` in order to achieve this!
+
+Remember that we use `useState` to create state variables in our application. Changes to these variables, triggered by user interactions, will cause React to rerender our component and update the DOM with the new state data.
+
+First, add a button element to the grocery item name span in ListItem.js:
+
+```jsx
+<span className='groceries__item__name'>
+	{props.groceryItem.item} - <button>Remove</button>
+</span>
+```
+
+We'll need to give this button element some functionality, which we'll revisit in a moment. In order for the component to re-render when grocery items are deleted, we need to move groceries into state. Let's refactor the beginning of App.js a bit:
+
+```jsx
+// import useState
+import { useState } from 'react';
+
+function App() {
+	// rename groceries to groceriesData
+	const groceriesData = [
+		{
+			item: 'Flour',
+			brand: 'Golden Start',
+			price: 12,
+			quantity: '1lb',
+			isPurchased: false,
+		},
+		{
+			item: 'Salt',
+			brand: 'Diamond',
+			price: 2,
+			quantity: '1lb',
+			isPurchased: false,
+		},
+		{
+			item: 'Eggs',
+			brand: 'Maple Orchards',
+			price: 3,
+			quantity: '1dz',
+			isPurchased: false,
+		},
+		{
+			item: 'Milk',
+			brand: 'Horizon Organic',
+			price: 4,
+			quantity: '1gal',
+			isPurchased: false,
+		},
+		{
+			item: 'Butter',
+			brand: 'Tillamook',
+			price: 2,
+			quantity: '1',
+			isPurchased: true,
+		},
+	];
+	// create a groceries state variable
+	const [groceries, setGroceries] = useState(groceriesData);
+
+	// create a function to handle deleting a grocery item
+	function handleDelete(itemName) {
+		// use .filter to iterate through state groceries and return a new array with items that don't match the name of the item to be deleted
+		const updatedItems = groceries.filter(
+			(grocery) => grocery.item !== itemName
+		);
+		// use the groceries state setter function to update state
+		setGroceries(updatedItems);
+	}
+
+	// rest of your code ...
+}
+```
+
+Okay, this looks pretty good so far! Now let's go down to where we're rendering our list items and pass each one the `handleDelete` function.
+
+```jsx
+{
+	groceries.map((element, index) => {
+		if (element.isPurchased === false) {
+			return (
+				<ListItem
+					groceryItem={element}
+					key={index}
+					handleDelete={handleDelete}
+				/>
+			);
+		} else {
+			return null;
+		}
+	});
+}
+```
+
+Cool. Now each list item is receiving the function as a prop. Let's go into the `ListItem` component file and give the button we created earlier an `onClick` attribute.
+
+```jsx
+<button onClick={props.handleDelete(props.groceryItem.item)}>Remove</button>
+```
+
+Hm, this seems to cause some issues. All my items get deleted and a warning is logging in the console.
+
+The problem is coming from the fact that we're passing in a function invocation with clappers where we should be giving a function reference. In order to pass the `handleDelete` function an argument, let's write an anonymous callback in the `onClick`. For conciseness, let's just put in an arrow function:
+
+```jsx
+<button onClick={(event) => props.handleDelete(props.groceryItem.item)}>
+	Remove
+</button>
+```
+
+Wow, that made a huge difference! Now all our grocery items render, and when we click on them, individual items get deleted.
+
+![Grocery App allowing us to delete items](https://media.giphy.com/media/ffGwz5x9Q7sr1g5sYx/giphy.gif)
 
 ## Hungry for more
 
@@ -258,3 +372,11 @@ Now we will add a button that says 'remove' and when clicked REMOVES the element
 - expand your app to allow for images (the images should be an http url ) and then render the image in your app - some images may take longer to load and not appear correctly, look into react life cycle events and/or lazy loading (if that is too much just keep trying images, some will work and save lifecycles/lazy loading for later)
 
 ---
+
+```
+
+```
+
+```
+
+```

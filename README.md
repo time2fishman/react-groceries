@@ -2,15 +2,18 @@
 
 Build an app that let's you make a list of groceries to buy.
 
-Make your Grocery List look like this:
 <img src="https://i.imgur.com/N20tCbL.png" />
+
+Here is a [preview](https://jocular-banoffee-8b2c76.netlify.app/) of the live application.
 
 ## Learning Objectives
 
 - Practice setting up a React app
 - Practice Mocking a React app
 - Practice rendering a list
+- Practice passing props
 - Practice conditional rendering
+- Practice using state to rerender components
 
 ---
 
@@ -19,10 +22,11 @@ Make your Grocery List look like this:
 1. Change into your labs folder with `cd ~/sei/labs`.
 2. Fork and clone this repository with `git clone <paste ssh url>`.
 3. Change into the new directory with `cd react-groceries`.
-4. Confirm that you're actually in you're in your `react-groceries` directory and then run `npm install`
-5. After it finishes installing, type `code .` to open up the project in VS Code.
-6. Run `npm start` to launch the React development server and open your application in the browser at `localhost:3000`.
-7. Turn in your submission via a pull request on the original repository.
+4. Check out a dev branch with `git checkout -b dev`.
+5. Confirm that you're actually in you're in your `react-groceries` directory and then run `npm install`
+6. After it finishes installing, type `code .` to open up the project in VS Code.
+7. Run `npm start` to launch the React development server and open your application in the browser at `localhost:3000`.
+8. Turn in your submission via a pull request on the original repository.
 
 ## Deliverables
 

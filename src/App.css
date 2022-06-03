@@ -18,6 +18,10 @@ body {
 	background-color: white;
 }
 
+.groceries__list { 
+	padding-left: 0;
+}
+
 .groceries__title {
 	font-weight: bold;
 	text-transform: uppercase;

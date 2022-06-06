@@ -19,7 +19,7 @@ Here is a [preview](https://jocular-banoffee-8b2c76.netlify.app/) of the live ap
 
 ## Set Up
 
-1. Change into your labs folder with `cd ~/sei/labs`.
+1. Change into your homework folder with `cd ~/sei/homework`.
 2. Fork and clone this repository with `git clone <paste ssh url>`.
 3. Change into the new directory with `cd react-groceries`.
 4. Check out a dev branch with `git checkout -b dev`.

@@ -57,7 +57,6 @@ function App() {
 					{groceries.map((element, index) => {
 						if (element.isPurchased === false) {
 							return <ListItem groceryItem={element} key={index} handleDelete={handleDelete} />
-							
 						} else {
 							return null
 						}

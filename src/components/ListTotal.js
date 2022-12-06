@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ListTotal = (props) => {
+const ListTotal = ({ groceries }) => {
     function calculateTotal(groceriesArray) {
         // this function should return the sum of the prices
         let sum = 0
@@ -15,7 +15,7 @@ const ListTotal = (props) => {
     }
 
     // save the return value of calculateTotal to a variable called total
-    const total = calculateTotal(props.groceries);
+    const total = calculateTotal(groceries);
 
     return (
         <p className='groceries__total  grid--container--total'>

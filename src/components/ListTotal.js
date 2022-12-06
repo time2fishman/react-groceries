@@ -3,10 +3,12 @@ import React from 'react';
 const ListTotal = (props) => {
     function calculateTotal(groceriesArray) {
         // this function should return the sum of the prices
-        console.log(groceriesArray);
         let sum = 0
         for (let i = 0; i < groceriesArray.length; i++) {
-            sum += groceriesArray[i].price
+            // check only for items where isPurchased property = false. Add the prices of each unpurchased item.
+            if (!groceriesArray[i].isPurchased) {
+                sum += groceriesArray[i].price
+            }
         }
 
         return sum

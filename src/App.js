@@ -1,9 +1,10 @@
 import './App.css';
 import ListItem from './components/ListItem';
 import ListTotal from './components/ListTotal';
+import { useState } from 'react'
 
 function App() {
-	const groceries = [
+	const groceriesData = [
 		{
 			item: 'Flour',
 			brand: 'Golden Start',
@@ -40,13 +41,26 @@ function App() {
 			isPurchased: true,
 		},
 	];
+
+	const [groceries, setGroceries] = useState(groceriesData)
+
+	function handleDelete(itemName) {
+		const updatedItems = groceries.filter((grocery) => grocery.item !== itemName)
+		setGroceries(updatedItems)
+	}
+
 	return (
 		<div className='groceries'>
 			<h1 className='groceries__title'>My Groceries</h1>
 			<div className='groceries__content'>
 				<ul className='groceries__list'>
 					{groceries.map((element, index) => {
-						return <ListItem groceryItem={element} key={index} />;
+						if (element.isPurchased === false) {
+							return <ListItem groceryItem={element} key={index} handleDelete={handleDelete} />
+							
+						} else {
+							return null
+						}
 					})}
 					<ListTotal groceries={groceries} />
 				</ul>
